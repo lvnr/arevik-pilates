@@ -1,0 +1,8 @@
+---
+interface Props { compact?: boolean }
+const { compact = false } = Astro.props;
+---
+<a class:list={['brand', compact && 'brand--compact']} href="/" aria-label="Arevik Pilates home">
+  <img src="/logo-mark.svg" alt="" width="42" height="42" />
+  <span>Arevik <b>Pilates</b></span>
+</a>

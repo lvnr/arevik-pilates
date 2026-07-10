@@ -1,0 +1,25 @@
+---
+import Logo from './Logo.astro';
+import { localePath, type Locale } from '../i18n';
+
+interface Props { locale: Locale; t: any }
+const { locale, t } = Astro.props;
+---
+<a class="skip-link" href="#main">{t.skip}</a>
+<header class="site-header">
+  <Logo />
+  <nav class="main-nav" aria-label="Primary">
+    <a href={`${localePath(locale)}#method`}>{t.nav.method}</a>
+    <a href={`${localePath(locale)}#sessions`}>{t.nav.sessions}</a>
+    <a href={`${localePath(locale)}#about`}>{t.nav.about}</a>
+    <a href={`${localePath(locale)}#faq`}>{t.nav.faq}</a>
+  </nav>
+  <div class="header-actions">
+    <nav class="languages" aria-label={t.languageLabel}>
+      <a href="/" aria-current={locale === 'en' ? 'page' : undefined}>EN</a>
+      <a href="/ru/" aria-current={locale === 'ru' ? 'page' : undefined}>RU</a>
+      <a href="/hy/" aria-current={locale === 'hy' ? 'page' : undefined}>ՀՅ</a>
+    </nav>
+    <a class="button button--small" href={localePath(locale, '/book/')}>{t.nav.book}</a>
+  </div>
+</header>

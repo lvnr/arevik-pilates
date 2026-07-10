@@ -1,0 +1,17 @@
+---
+import Logo from './Logo.astro';
+import { localePath, type Locale } from '../i18n';
+interface Props { locale: Locale; t: any }
+const { locale, t } = Astro.props;
+---
+<footer class="site-footer">
+  <div class="footer-top">
+    <Logo />
+    <p>{t.footer.line}</p>
+    <a class="text-link" href={localePath(locale, '/book/')}>{t.nav.book}<span aria-hidden="true">↗</span></a>
+  </div>
+  <div class="footer-bottom">
+    <span>© {new Date().getFullYear()} {t.footer.rights}</span>
+    <a href="https://arevikpilates.setmore.com" target="_blank" rel="noreferrer">{t.footer.booking}</a>
+  </div>
+</footer>

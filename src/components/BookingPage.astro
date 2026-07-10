@@ -1,0 +1,37 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import SiteHeader from './SiteHeader.astro';
+import SiteFooter from './SiteFooter.astro';
+import { copy, localePath, type Locale } from '../i18n';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const t = copy[locale];
+---
+<SiteLayout locale={locale} title={`${t.bookPage.title} — Arevik Pilates`} description={t.meta.description}>
+  <SiteHeader locale={locale} t={t} />
+  <main id="main" class="booking-page">
+    <section class="booking-page-intro section-shell" data-reveal>
+      <div>
+        <p class="eyebrow">{t.bookPage.eyebrow}</p>
+        <h1>{t.bookPage.title}</h1>
+      </div>
+      <div>
+        <p>{t.bookPage.body}</p>
+        <a class="text-link" href={localePath(locale)}><span aria-hidden="true">←</span>{t.bookPage.back}</a>
+      </div>
+    </section>
+    <section class="booking-frame section-shell" data-reveal>
+      <iframe
+        src="https://arevikpilates.setmore.com/book"
+        title={t.bookPage.iframeTitle}
+        width="100%"
+        height="100%"
+        allow="web-share"
+      ></iframe>
+      <noscript><a href="https://arevikpilates.setmore.com/book" target="_blank" rel="noreferrer">{t.bookPage.fallback}</a></noscript>
+    </section>
+    <p class="booking-fallback"><a href="https://arevikpilates.setmore.com/book" target="_blank" rel="noreferrer">{t.bookPage.fallback}<span aria-hidden="true">↗</span></a></p>
+  </main>
+  <SiteFooter locale={locale} t={t} />
+</SiteLayout>
