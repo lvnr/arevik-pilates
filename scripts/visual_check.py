@@ -1,7 +1,8 @@
+import os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 
-BASE = "http://127.0.0.1:4321"
+BASE = os.environ.get("BASE_URL", "http://127.0.0.1:4321").rstrip("/")
 OUT = Path("artifacts/visual")
 OUT.mkdir(parents=True, exist_ok=True)
 
